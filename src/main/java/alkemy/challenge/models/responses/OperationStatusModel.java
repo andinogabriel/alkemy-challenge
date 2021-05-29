@@ -1,4 +1,4 @@
-package alkemy.challege.models.responses;
+package alkemy.challenge.models.responses;
 
 public class OperationStatusModel {
 

@@ -1,4 +1,4 @@
-package alkemy.challege.models.requests;
+package alkemy.challenge.models.requests;
 
 import lombok.Getter;
 import lombok.Setter;

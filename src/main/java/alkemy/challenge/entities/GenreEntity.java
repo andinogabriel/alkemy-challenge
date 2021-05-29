@@ -1,4 +1,4 @@
-package alkemy.challege.entities;
+package alkemy.challenge.entities;
 
 import lombok.Getter;
 import lombok.Setter;

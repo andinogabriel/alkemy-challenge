@@ -1,4 +1,4 @@
-package alkemy.challege.models.requests;
+package alkemy.challenge.models.requests;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,10 +22,9 @@ public class CharacterRequest {
     @Positive
     private Integer age;
 
-    @Digits(integer=8, fraction=2, message = "Weight must only have four decimal.")
+    @Digits(integer=8, fraction=2, message = "Weight must only have two decimal.")
     @Positive
     private BigDecimal weight;
-
 
     private String story;
 

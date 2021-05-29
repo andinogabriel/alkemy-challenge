@@ -1,7 +1,7 @@
-package alkemy.challege.exceptions;
+package alkemy.challenge.exceptions;
 
-import alkemy.challege.models.responses.ErrorMessage;
-import alkemy.challege.models.responses.ValidationErrors;
+import alkemy.challenge.models.responses.ErrorMessage;
+import alkemy.challenge.models.responses.ValidationErrors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +47,6 @@ public class AppExceptionsHandler {
 
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 
 }

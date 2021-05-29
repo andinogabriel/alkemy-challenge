@@ -1,8 +1,7 @@
-package alkemy.challege.entities;
+package alkemy.challenge.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +24,7 @@ public class MovieEntity implements Serializable {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @CreatedDate
+    @Column(nullable = false)
     private Date creationDate;
 
     private Integer qualification;
@@ -34,8 +33,8 @@ public class MovieEntity implements Serializable {
     @JoinColumn(name = "genre_id")
     private GenreEntity genre;
 
-    @ManyToMany(mappedBy = "characterMovies")
-    private List<CharacterEntity> movieCharacters;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie")
+    private List<MovieDetailEntity> movieDetails;
 
 
 }

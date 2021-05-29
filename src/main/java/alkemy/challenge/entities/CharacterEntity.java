@@ -1,4 +1,4 @@
-package alkemy.challege.entities;
+package alkemy.challenge.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,17 +28,12 @@ public class CharacterEntity implements Serializable {
     @Column(nullable = false)
     private Integer age;
 
-    @Digits(integer = 8, fraction = 4)
+    @Digits(integer = 8, fraction = 2)
     private BigDecimal weight;
 
     private String story;
 
-    @ManyToMany
-    @JoinTable(
-            name = "movies_like",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    private List<MovieEntity> characterMovies;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "character")
+    private List<MovieDetailEntity> movies;
 
 }
