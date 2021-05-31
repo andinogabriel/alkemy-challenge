@@ -21,7 +21,10 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
     @Query(value = "SELECT image, title, creation_date FROM movies", countQuery = "SELECT COUNT(title) FROM movies", nativeQuery = true)
     Page<Object[]> getMovies(Pageable pageable);
 
-    @Query(value = "SELECT * FROM genres ORDER BY creation_date :ord", countQuery = "SELECT COUNT(*) FROM genres ORDER BY creation_date :ord", nativeQuery = true)
+    @Query(value = "SELECT * FROM movies ORDER BY creation_date :ord", countQuery = "SELECT COUNT(*) FROM movies ORDER BY creation_date :ord", nativeQuery = true)
     Page<MovieEntity> getMoviesOrderBy(Pageable pageable, @Param("ord") String ord);
+
+    @Query(value = "SELECT * FROM movies WHERE title LIKE %:movieTitle% and genre_id =:genreId ORDER BY creation_date :ord", countQuery = "SELECT COUNT(*) FROM movies WHERE title LIKE %:movieTitle% and genre_id =:genreId ORDER BY creation_date :ord", nativeQuery = true)
+    Page<MovieEntity> getSearchMovies(Pageable pageable, @Param("movieTitle") String movieTitle, @Param("genreId") long genreId, @Param("ord") String ord);
 
 }

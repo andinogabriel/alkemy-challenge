@@ -1,5 +1,9 @@
 package alkemy.challenge;
 
+import alkemy.challenge.dtos.CharacterDto;
+import alkemy.challenge.dtos.MovieDto;
+import alkemy.challenge.models.responses.CharacterResponse;
+import alkemy.challenge.models.responses.MovieResponse;
 import alkemy.challenge.security.AppProperties;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -37,6 +41,8 @@ public class AndinochallengeApplication {
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper mapper = new ModelMapper();
+		//mapper.typeMap(MovieDto.class, MovieResponse.class).addMappings(m -> m.skip(MovieResponse::setMovieDetails));
+		//mapper.typeMap(CharacterDto.class, CharacterResponse.class).addMappings(m -> m.skip(CharacterResponse::setMovies));
 		return mapper;
 	}
 

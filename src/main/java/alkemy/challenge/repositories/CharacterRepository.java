@@ -25,4 +25,6 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Long
     @Query(value = "SELECT name, image FROM characters", countQuery = "SELECT COUNT(name) FROM characters", nativeQuery = true)
     Page<Object[]> getCharacters(Pageable pageable);
 
+
+
 }

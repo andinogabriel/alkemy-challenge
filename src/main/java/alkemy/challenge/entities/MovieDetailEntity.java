@@ -1,5 +1,7 @@
 package alkemy.challenge.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +20,11 @@ public class MovieDetailEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
+    @JsonIgnoreProperties(value = {"movieDetails", "handler","hibernateLazyInitializer"}, allowSetters = true)
     private MovieEntity movie;
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
+    @JsonIgnoreProperties(value = {"movies", "handler","hibernateLazyInitializer"}, allowSetters = true)
     private CharacterEntity character;
 }

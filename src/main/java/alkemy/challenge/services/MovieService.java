@@ -77,7 +77,7 @@ public class MovieService {
         movieRepository.delete(movieEntity);
     }
 
-    public Page<MovieDto> getMoviesByName(String name, int page, int limit, String sortBy, String sortDir) {
+    public Page<MovieDto> getMoviesByTitle(String title, int page, int limit, String sortBy, String sortDir) {
         if (page > 0) {
             page = page - 1;
         }
@@ -87,7 +87,7 @@ public class MovieService {
                 sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending()
         );
 
-        Page<MovieEntity> movieEntities = movieRepository.findByTitleIgnoreCaseContaining(pageable, name);
+        Page<MovieEntity> movieEntities = movieRepository.findByTitleIgnoreCaseContaining(pageable, title);
         return mapper.map(movieEntities, Page.class);
     }
 
@@ -108,17 +108,29 @@ public class MovieService {
         return mapper.map(movieEntities, Page.class);
     }
 
-    public Page<MovieDto> getMoviesByOrderCreationDate(String order, int page, int limit, String sortBy, String sortDir) {
+    public Page<MovieDto> getMoviesByOrderCreationDate(int page, int limit, String sortDir) {
         if (page > 0) {
             page = page - 1;
         }
 
         Pageable pageable = PageRequest.of(
-                page, limit,
-                sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending()
+                page, limit
         );
 
-        Page<MovieEntity> movieEntities = movieRepository.getMoviesOrderBy(pageable, order);
+        Page<MovieEntity> movieEntities = movieRepository.getMoviesOrderBy(pageable, sortDir);
+        return mapper.map(movieEntities, Page.class);
+    }
+
+    public Page<MovieDto> getSearchMovies(int page, int limit, String title, long genreId, String sortDir) {
+        if (page > 0) {
+            page = page - 1;
+        }
+
+        Pageable pageable = PageRequest.of(
+                page, limit
+        );
+
+        Page<MovieEntity> movieEntities = movieRepository.getSearchMovies(pageable, title, genreId, sortDir);
         return mapper.map(movieEntities, Page.class);
     }
 

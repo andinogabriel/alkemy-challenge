@@ -24,8 +24,16 @@ public class CharacterController {
 
     //List of characters
     @GetMapping
-    public Page<CharacterResponse> getCharacters(@RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value="limit", defaultValue = "5") int limit, @RequestParam(value = "sortBy", defaultValue = "name") String sortBy, @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir) {
-        Page<CharacterDto> characters = characterService.getCharacters(page, limit, sortBy, sortDir);
+    public Page<CharacterResponse> getCharacters(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "age", required = false) Integer age, @RequestParam(value = "movies", required = false) Long idMovie, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value="limit", defaultValue = "5") int limit, @RequestParam(value = "sortBy", defaultValue = "name") String sortBy, @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir) {
+
+        Page<CharacterDto> characters = null;
+        if (name == null && age == null && idMovie == null) {
+            characters = characterService.getCharacters(page, limit, sortBy, sortDir);
+        } else if (name == null && age != null && idMovie == null) {
+            characters = characterService.getCharactersByAge(age, page, limit, sortBy, sortDir);
+        } else if (name == null && age == null & idMovie != null) {
+            long movieId = idMovie.longValue();
+        }
         return mapper.map(characters, Page.class);
     }
 

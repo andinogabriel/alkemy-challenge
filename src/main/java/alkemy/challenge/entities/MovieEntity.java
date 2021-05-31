@@ -1,5 +1,7 @@
 package alkemy.challenge.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +33,7 @@ public class MovieEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "genre_id")
+    @JsonIgnoreProperties(value = {"movies", "handler","hibernateLazyInitializer"}, allowSetters = true)
     private GenreEntity genre;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie")
