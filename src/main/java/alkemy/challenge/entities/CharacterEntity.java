@@ -1,6 +1,5 @@
 package alkemy.challenge.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,8 +19,7 @@ public class CharacterEntity implements Serializable {
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false)
-    private String image;
+    private String imageLink;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -32,6 +30,7 @@ public class CharacterEntity implements Serializable {
     @Digits(integer = 8, fraction = 2)
     private BigDecimal weight;
 
+    @Column(columnDefinition="TEXT")
     private String story;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "character")

@@ -1,5 +1,6 @@
 package alkemy.challenge.repositories;
 
+import alkemy.challenge.dtos.MovieByGenreDto;
 import alkemy.challenge.entities.GenreEntity;
 import alkemy.challenge.entities.MovieEntity;
 import org.springframework.data.domain.Page;
@@ -14,9 +15,9 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Long> {
 
     MovieEntity findById(long id);
 
-    Page<MovieEntity> findByTitleIgnoreCaseContaining(Pageable pageable, String title);
+    Page<MovieByGenreDto> findByTitleIgnoreCaseContaining(Pageable pageable, String title);
 
-    Page<MovieEntity> findByGenre(Pageable pageable ,GenreEntity genreEntity);
+    Page<MovieByGenreDto> findByGenre(Pageable pageable , GenreEntity genreEntity);
 
     @Query(value = "SELECT image, title, creation_date FROM movies", countQuery = "SELECT COUNT(title) FROM movies", nativeQuery = true)
     Page<Object[]> getMovies(Pageable pageable);

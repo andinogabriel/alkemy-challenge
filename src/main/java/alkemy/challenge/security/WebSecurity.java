@@ -26,8 +26,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         //De esta forma especificamos que la url de /users con el metodo POST va a ser publica pero las demas otra peticiones deben estar autenticadas
         http.cors().and()
                 .csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/register", "/api/v1/auth/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/auth/activation", "/v2/api-docs", "/swagger-ui").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().addFilter(getAuthenticationFilter()) //Este es el filter que vamos a usar para autenticacion.

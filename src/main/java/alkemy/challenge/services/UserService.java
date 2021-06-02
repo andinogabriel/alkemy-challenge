@@ -3,6 +3,7 @@ package alkemy.challenge.services;
 import alkemy.challenge.dtos.UserDto;
 import alkemy.challenge.entities.UserEntity;
 import alkemy.challenge.exceptions.EmailExistsException;
+import alkemy.challenge.repositories.ConfirmationTokenRepository;
 import alkemy.challenge.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,25 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    ConfirmationTokenService confirmationTokenService;
+
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -39,6 +52,11 @@ public class UserService implements UserDetailsService {
         return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
     }
 
+    @Transactional
+    public UserEntity save(UserEntity user) {
+        return userRepository.save(user);
+    }
+
     public UserDto createUser(UserDto user) {
         if (userRepository.findByEmail(user.getEmail()) != null) throw new EmailExistsException("Email is already registered.");
 
@@ -48,9 +66,22 @@ public class UserService implements UserDetailsService {
         userEntity.setEmail(user.getEmail());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
-        UserEntity userSaved = userRepository.save(userEntity);
+        userEntity.setEnabled(false);
 
-        return mapper.map(userSaved, UserDto.class);
+        Optional<UserEntity> userSaved = Optional.of(save(userEntity));
+
+        userSaved.ifPresent(u -> {
+            try {
+                String token = UUID.randomUUID().toString();
+                confirmationTokenService.save(userSaved.get(), token);
+                //send confirmation email
+                emailService.sendHtmlMail(u);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        return mapper.map(userSaved.get(), UserDto.class);
     }
 
     public UserDto getUser(String email) {

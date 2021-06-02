@@ -14,7 +14,9 @@ import alkemy.challenge.services.MovieService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Objects;
@@ -57,6 +59,11 @@ public class MovieController {
     public MovieResponse createMovie(@Valid @RequestBody MovieRequest movieRequest) {
         MovieDto movieDto = movieService.createMovie(mapper.map(movieRequest, MovieCreationDto.class));
         return mapper.map(movieDto, MovieResponse.class);
+    }
+
+    @PostMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void uploadMovieImage(@PathVariable("id") long id, @RequestParam("file") MultipartFile file) {
+        movieService.uploadMovieImage(id, file);
     }
 
     @PostMapping(path = "/detail")

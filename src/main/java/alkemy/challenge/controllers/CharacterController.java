@@ -8,7 +8,9 @@ import alkemy.challenge.services.CharacterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -24,17 +26,19 @@ public class CharacterController {
 
     //List of characters
     @GetMapping
-    public Page<CharacterResponse> getCharacters(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "age", required = false) Integer age, @RequestParam(value = "movies", required = false) Long idMovie, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value="limit", defaultValue = "5") int limit, @RequestParam(value = "sortBy", defaultValue = "name") String sortBy, @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir) {
+    public Page<?> getCharacters(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "age", required = false) Integer age, @RequestParam(value = "movies", required = false) Long idMovie, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value="limit", defaultValue = "5") int limit, @RequestParam(value = "sortBy", defaultValue = "name") String sortBy, @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir) {
 
-        Page<CharacterDto> characters = null;
+        Page<?> characters = null;
         if (name == null && age == null && idMovie == null) {
             characters = characterService.getCharacters(page, limit, sortBy, sortDir);
         } else if (name == null && age != null && idMovie == null) {
             characters = characterService.getCharactersByAge(age, page, limit, sortBy, sortDir);
         } else if (name == null && age == null & idMovie != null) {
+            sortBy = "character_id";
             long movieId = idMovie.longValue();
+            characters = characterService.getCharactersByMovie(movieId, page, limit, sortBy, sortDir);
         }
-        return mapper.map(characters, Page.class);
+        return characters;
     }
 
     @GetMapping(path = "/{id}")
@@ -48,6 +52,11 @@ public class CharacterController {
         CharacterDto characterDto = mapper.map(characterRequest, CharacterDto.class);
         CharacterDto createdCharacter = characterService.createCharacter(characterDto);
         return mapper.map(createdCharacter, CharacterResponse.class);
+    }
+
+    @PostMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void uploadCharacterImage(@PathVariable("id") long id, @RequestParam("file")MultipartFile file) {
+        characterService.uploadCharacterImage(id, file);
     }
 
     @PutMapping(path = "/{id}")

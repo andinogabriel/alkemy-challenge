@@ -12,7 +12,7 @@ public class GenreDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private long id;
     private String name;
-    private String image;
+    private String imageLink;
     private List<MovieDto> movies;
 
 

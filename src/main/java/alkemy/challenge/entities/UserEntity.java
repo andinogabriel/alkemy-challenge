@@ -36,4 +36,7 @@ public class UserEntity implements Serializable {
     @CreatedDate
     private Date startDate;
 
+    private boolean isEnabled;
+
+
 }

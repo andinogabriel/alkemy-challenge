@@ -1,0 +1,818 @@
+{
+	"info": {
+		"_postman_id": "d37ade79-b2be-4353-80c8-a71fce9a1625",
+		"name": "Java-Alkemy-Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "POST - Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabriel_andino@outlook.com\",\r\n    \"password\": \"123456789\",\r\n    \"firstName\": \"Probando3 name3\",\r\n    \"lastName\": \"Probando3 apellido3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabriel_andino@outlook.com\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get confirmation account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/auth/activation?token=409cd228-65a3-4e8c-b7ca-011548166304",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"activation"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "409cd228-65a3-4e8c-b7ca-011548166304"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Character",
+			"item": [
+				{
+					"name": "POST - Create character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyMzkzNTk0fQ.sdSXRdOjT9LN8rRha_Sa1IaMVMZCSlDjCrLV9KTUSMkq5-N1cFb75HV2cWjsf2O6LrTo0WEsFkbsUSywng20nQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"Pluto.jpg\",\r\n    \"age\": 84,\r\n    \"story\": \"Esta es la historia del personaje Pluto\",\r\n    \"name\": \"Pluto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - List all characters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyMzkzNTk0fQ.sdSXRdOjT9LN8rRha_Sa1IaMVMZCSlDjCrLV9KTUSMkq5-N1cFb75HV2cWjsf2O6LrTo0WEsFkbsUSywng20nQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Delete a character",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update a character",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"blancanieves.jpg\",\r\n    \"age\": 84,\r\n    \"story\": \"Esta es la historia del personaje Blanca Nieves\",\r\n    \"name\": \"Blanca Nieves\",\r\n    \"weight\": 52.66\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get character details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTE1MDI1fQ.fIS4NexDfdADUIBC7zOrln9s9JK5YhJbEs4gN1Jq2YpnZ_PY4nUwY4a-0XM_yteq2x3YAQhdvSoaBO0AX032tQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get characters by name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYWJyaWVsX2FuZGlub0BvdXRsb29rLmNvbSIsImV4cCI6MTYyMjcyODEwMH0.Xc7KY-VXEld5iMrPsESPEOAseCFA83rukzomVMj3wQ3mB3nHDnGkaLP3mg2dV8H2vOk-uEE2mDzIqkJ3aHIRmA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters/name?name=pl",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "pl"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get characters by age",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYWJyaWVsX2FuZGlub0BvdXRsb29rLmNvbSIsImV4cCI6MTYyMjcyODEwMH0.Xc7KY-VXEld5iMrPsESPEOAseCFA83rukzomVMj3wQ3mB3nHDnGkaLP3mg2dV8H2vOk-uEE2mDzIqkJ3aHIRmA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters/age?age=84",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"age"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "84"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get characters by movie id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTU4ODQ4fQ._b-8vkaG1BlJ6gbWj_Kw_5W15jPYBVPEMOlaTDnOawIi89KLdDUvzgR7_PKV7oW_9_bDgd4zcD2ryxEq-AXfwg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters?movies=17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "17"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Upload character image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYWJyaWVsX2FuZGlub0BvdXRsb29rLmNvbSIsImV4cCI6MTYyMjY2ODg3N30.pNSblHsUBkCUKV64cOs7RMm0QLOconxBh9vkAnyfob9HxF48JBvVNJ1iS6loVzuGqRorYTss2K-ZGGibaus6cA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/gabri/Desktop/mickey.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/characters/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "POST - Create a genre",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Thriller\",\r\n    \"image\": \"thriller.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - List all genres",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get genre by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/genres/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"genres",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Delete a genre",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/genres/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"genres",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update a genre",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNDEzNzk1fQ.nL4mql_rEKI5qJFwCkHY53zRDP73xYsDeZReaZ6U5cYXH4PF59s5-Js3PYLKCDUJOXhtlIFJMXNm4FdCE5ULtw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adventure\",\r\n    \"image\": \"adventure.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/genres/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"genres",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Upload genre image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYWJyaWVsX2FuZGlub0BvdXRsb29rLmNvbSIsImV4cCI6MTYyMjY2ODg3N30.pNSblHsUBkCUKV64cOs7RMm0QLOconxBh9vkAnyfob9HxF48JBvVNJ1iS6loVzuGqRorYTss2K-ZGGibaus6cA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/gabri/Desktop/aventura.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/genres/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"genres",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "POST - Register a movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTAwMjY3fQ.ezbAYR2Ehk3NVonsL3unOqA2sH3HmthPeLie2Sy70P4p2a3bEeQ-DgIyKUEZT_b3QsojwdU0kX6AKuxKzBfC5w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"coco.png\",\r\n    \"title\": \"Coco\",\r\n    \"qualification\": 5,\r\n    \"genre\": 11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get movies by name (title)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTAwMjY3fQ.ezbAYR2Ehk3NVonsL3unOqA2sH3HmthPeLie2Sy70P4p2a3bEeQ-DgIyKUEZT_b3QsojwdU0kX6AKuxKzBfC5w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/movies?name=cru",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "cru"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get movies by genre",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTAwMjY3fQ.ezbAYR2Ehk3NVonsL3unOqA2sH3HmthPeLie2Sy70P4p2a3bEeQ-DgIyKUEZT_b3QsojwdU0kX6AKuxKzBfC5w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/movies?genre=13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get movies order by creation date",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTAwMjY3fQ.ezbAYR2Ehk3NVonsL3unOqA2sH3HmthPeLie2Sy70P4p2a3bEeQ-DgIyKUEZT_b3QsojwdU0kX6AKuxKzBfC5w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/movies?order=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create movie detail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9iYW5kbzNAZ21haWwuY29tIiwiZXhwIjoxNjIyNTAwMjY3fQ.ezbAYR2Ehk3NVonsL3unOqA2sH3HmthPeLie2Sy70P4p2a3bEeQ-DgIyKUEZT_b3QsojwdU0kX6AKuxKzBfC5w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie\": 17,\r\n    \"character\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/movies/detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Upload movie image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYWJyaWVsX2FuZGlub0BvdXRsb29rLmNvbSIsImV4cCI6MTYyMjY2ODg3N30.pNSblHsUBkCUKV64cOs7RMm0QLOconxBh9vkAnyfob9HxF48JBvVNJ1iS6loVzuGqRorYTss2K-ZGGibaus6cA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/gabri/Desktop/cruella.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/movies/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

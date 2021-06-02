@@ -17,5 +17,6 @@ public class UserDto implements Serializable {
     private String password;
     private String encryptedPassword;
     private Date startDate;
+    private boolean isEnabled;
 
 }

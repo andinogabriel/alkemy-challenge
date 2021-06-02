@@ -11,7 +11,6 @@ public class GenreRequest {
     @NotBlank(message = "Name is required.")
     private String name;
 
-    @NotBlank(message = "Image is required.")
-    private String image;
+    private String imageLink;
 
 }

@@ -1,8 +1,6 @@
 package alkemy.challenge.dtos;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -15,7 +13,7 @@ public class CharacterDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private long id;
-    private String image;
+    private String imageLink;
     private String name;
     private Integer age;
     private BigDecimal weight;

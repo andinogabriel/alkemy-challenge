@@ -10,8 +10,7 @@ import java.util.Date;
 @Getter @Setter
 public class MovieRequest {
 
-    @NotBlank(message = "Image is required.")
-    private String image;
+    private String imageLink;
 
     @NotBlank(message = "Title is required.")
     private String title;

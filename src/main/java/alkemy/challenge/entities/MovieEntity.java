@@ -1,7 +1,6 @@
 package alkemy.challenge.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,8 +19,7 @@ public class MovieEntity implements Serializable {
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false)
-    private String image;
+    private String imageLink;
 
     @Column(nullable = false, length = 100)
     private String title;

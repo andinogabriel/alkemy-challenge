@@ -9,7 +9,7 @@ import java.util.List;
 public class MovieResponse {
 
     private long id;
-    private String image;
+    private String imageLink;
     private String title;
     private Integer qualification;
     private GenreResponse genre;

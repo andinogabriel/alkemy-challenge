@@ -20,8 +20,7 @@ public class GenreEntity implements Serializable {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false)
-    private String image;
+    private String imageLink;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
     private List<MovieEntity> movies;

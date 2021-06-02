@@ -7,7 +7,9 @@ import alkemy.challenge.models.responses.OperationStatusModel;
 import alkemy.challenge.services.GenreService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -41,6 +43,11 @@ public class GenreController {
     public GenreResponse createGenre(@Valid @RequestBody GenreRequest genreRequest) {
         GenreDto genreDto = genreService.createGenre(mapper.map(genreRequest, GenreDto.class));
         return mapper.map(genreDto, GenreResponse.class);
+    }
+
+    @PostMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void uploadGenreImage(@PathVariable("id") long id, @RequestParam("file") MultipartFile file) {
+        genreService.uploadGenreImage(id, file);
     }
 
     @PutMapping(path = "/{id}")

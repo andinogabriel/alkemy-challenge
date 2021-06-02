@@ -12,8 +12,7 @@ import java.math.BigDecimal;
 @Getter @Setter
 public class CharacterRequest {
 
-    @NotBlank(message = "Image is required.")
-    private String image;
+    private String imageLink;
 
     @NotBlank(message = "Name is required.")
     private String name;

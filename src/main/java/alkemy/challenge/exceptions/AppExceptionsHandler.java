@@ -16,11 +16,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @ControllerAdvice
 public class AppExceptionsHandler {
 
-    //Excepciones al validar un modelo en el controller
+    //Excepciones al valdar un modelo en el controller
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleArgumentNotValid(MethodArgumentNotValidException ex, WebRequest webRequest) {
 
@@ -47,6 +46,5 @@ public class AppExceptionsHandler {
 
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
 }

@@ -13,7 +13,7 @@ public class MovieDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private long id;
-    private String image;
+    private String imageLink;
     private String title;
     private Date creationDate;
     private Integer qualification;
