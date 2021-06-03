@@ -1,5 +1,6 @@
 package alkemy.challenge.models.requests;
 
+import alkemy.challenge.security.PasswordMatches;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@PasswordMatches
 @Getter @Setter
 public class RegisterUserRequest {
 
@@ -18,6 +20,10 @@ public class RegisterUserRequest {
     @NotEmpty(message = "Password is required.")
     @Size(min = 8, max = 20, message = "Password must have a range of 8 to 20 characters.")
     private String password;
+
+    @NotEmpty
+    @Size(min = 8, max = 30, message = "La contraseña debe tener entre 8 y 30 caracteres") //Size es para strings
+    private String matchingPassword;
 
     @NotBlank(message = "First name is required.")
     private String firstName;
